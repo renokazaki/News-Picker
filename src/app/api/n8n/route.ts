@@ -35,8 +35,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(news, { status: 201 });
   } catch (error) {
     console.error("Error creating news:", error);
+    // Prismaエラーの詳細をログ出力
+    if (error instanceof Error) {
+      console.error("Error details:", error.message);
+    }
+
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to create news" },
       { status: 500 }
     );
   }
