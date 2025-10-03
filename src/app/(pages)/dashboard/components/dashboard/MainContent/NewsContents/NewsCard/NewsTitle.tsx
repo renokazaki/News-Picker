@@ -1,4 +1,4 @@
-import { CardHeader } from "@/app/(pages)/dashboard/components/ui/card";
+import { CardHeader } from "@/app/components/ui/card";
 import { NewsItem } from "@/types/News.type";
 
 interface NewsTitleProps {

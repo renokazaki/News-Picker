@@ -2,7 +2,7 @@ export interface NewsItem {
   title: string;
   url: string;
   text: string;
-  publishedAt: string;
+  publishedAt: Date;
 }
 
 export type DateType = Date | undefined;

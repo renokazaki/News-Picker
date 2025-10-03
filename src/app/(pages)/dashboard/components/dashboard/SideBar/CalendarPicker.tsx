@@ -1,8 +1,6 @@
-import { Calendar } from "@/app/(pages)/dashboard/components/ui/calendar";
-import {
-  SidebarGroup,
-  SidebarGroupContent,
-} from "@/app/(pages)/dashboard/components/ui/sidebar";
+"use client";
+import { Calendar } from "@/app/components/ui/calendar";
+import { SidebarGroup, SidebarGroupContent } from "@/app/components/ui/sidebar";
 import { selectedDateAtom } from "@/app/store";
 import { useAtom } from "jotai";
 export function CalendarPicker() {
