@@ -22,10 +22,12 @@ export async function POST(req: Request) {
     return new Response("Error: Missing Svix headers", { status: 400 });
   }
 
+  // 🔧 修正1: req.json()ではなくreq.text()を使用
   const payload = await req.text();
   let evt: WebhookEvent;
 
   try {
+    // 🔧 修正2: JSON.stringify()を削除（payloadはすでに文字列）
     evt = wh.verify(payload, {
       "svix-id": svix_id,
       "svix-timestamp": svix_timestamp,
@@ -38,37 +40,86 @@ export async function POST(req: Request) {
 
   if (evt.type === "user.created") {
     try {
+      // 🔧 修正3: usernameがnullの場合の処理を追加
+      const displayName =
+        evt.data.username ||
+        evt.data.first_name ||
+        evt.data.email_addresses?.[0]?.email_address?.split("@")[0] ||
+        "User";
+
+      const profileImage = evt.data.image_url || "";
+
+      console.log("Creating user with:", {
+        clerk_id: evt.data.id,
+        display_name: displayName,
+        profile_image: profileImage,
+      });
+
+      // ユーザーを作成
+      // 🔧 修正4: created_atとupdated_atを削除（Prismaが自動設定）
       await prisma.user.create({
         data: {
           clerk_id: evt.data.id,
-          display_name: evt.data.username || evt.data.first_name || "User",
-          profile_image: evt.data.image_url || "",
-          created_at: new Date(),
-          updated_at: new Date(),
+          display_name: displayName,
+          profile_image: profileImage,
         },
       });
 
       return new Response("User created successfully", { status: 201 });
     } catch (err) {
       console.error("Error inserting user into database:", err);
+      // 🔧 修正5: エラー詳細を追加
+      if (err instanceof Error) {
+        console.error("Error details:", err.message);
+      }
       return new Response("Error: Database operation failed", { status: 500 });
     }
   }
 
   if (evt.type === "user.updated") {
     try {
+      const displayName =
+        evt.data.username ||
+        evt.data.first_name ||
+        evt.data.email_addresses?.[0]?.email_address?.split("@")[0] ||
+        "User";
+
+      const profileImage = evt.data.image_url || "";
+
       await prisma.user.update({
         where: { clerk_id: evt.data.id },
         data: {
-          display_name: evt.data.username || evt.data.first_name || "User",
-          profile_image: evt.data.image_url || "",
-          updated_at: new Date(),
+          display_name: displayName,
+          profile_image: profileImage,
+          // updated_atは@updatedAtで自動更新される
         },
       });
 
       return new Response("User updated successfully", { status: 200 });
     } catch (err) {
       console.error("Error updating user:", err);
+      if (err instanceof Error) {
+        console.error("Error details:", err.message);
+      }
+      return new Response("Error: Database operation failed", { status: 500 });
+    }
+  }
+
+  if (evt.type === "user.deleted") {
+    try {
+      // ユーザーを削除
+      await prisma.user.delete({
+        where: {
+          clerk_id: evt.data.id,
+        },
+      });
+
+      return new Response("User deleted successfully", { status: 200 });
+    } catch (err) {
+      console.error("Error deleting user:", err);
+      if (err instanceof Error) {
+        console.error("Error details:", err.message);
+      }
       return new Response("Error: Database operation failed", { status: 500 });
     }
   }
