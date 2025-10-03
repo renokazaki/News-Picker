@@ -7,6 +7,7 @@ import {
   SidebarSeparator,
 } from "@/app/components/ui/sidebar";
 import { CalendarPicker } from "./CalendarPicker";
+import ToolTip from "./ToolTip";
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
@@ -15,6 +16,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <CalendarPicker />
+        <ToolTip />
         <SidebarSeparator className="mx-0" />
       </SidebarContent>
       <SidebarRail />
