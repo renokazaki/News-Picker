@@ -1,37 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zenn News Picker
+<img width="1920" height="928" alt="ZennNewsPicker" src="https://github.com/user-attachments/assets/da474f7b-be76-494c-baab-c462958d500f" />
 
-## Getting Started
+## 概要
 
-First, run the development server:
+**Zenn News Picker** は、n8nを利用し、Zennの技術記事から興味のあるキーワードに基づいて自動的にフィルタリングを行い、AIによる要約を付与してWebアプリケーション上で表示するツールです。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+事前に設定した興味分野のキーワードを基に、n8nワークフローがZennから記事を取得し、AIエージェントによるフィルタリングと要約処理を実行します。処理された記事は、NextjsのISRを採用したことで効率的なページ表示と、Reactの直感的なUIで閲覧できるよう設計されています。
+
+## 開発背景
+情報のキャッチアップを効率的に行いたいと考えていました。
+その中でも今回はZennの記事に関して、特に以下の課題を感じていたのでそれを解消できるようなアプリケーションを作成しました。
+
+- **情報過多の問題**: 膨大な記事の中から関連性の高いものを見つける手間を削減
+- **効率的な情報収集**: 興味のあるトピックに絞った記事のみを自動収集
+- **時短と集中**: 情報収集時間を短縮し、本当に必要な技術情報に集中
+
+## 技術スタック
+
+### フロントエンド
+- **Next js** - 効率的なレンダリング
+- **React 19** - モダンなUI構築
+- **TypeScript** - 型安全性の確保
+- **shadcn/ui** - 美しく一貫性のあるUIコンポーネント
+- **Tailwind CSS** - 効率的なスタイリング
+- **Jotai** - 状態管理ライブラリ
+
+### バックエンド
+- **Prisma** - 型安全なORM
+- **PostgreSQL(Neon)** - リレーショナルデータベース
+- **SWR** - 効率的なデータ操作
+
+### 自動化・AI処理
+- **n8n** - ワークフロー自動化プラットフォーム
+- **AIエージェント** - 記事のフィルタリングと要約生成
+
+
+## 主な機能
+
+### 🔄 自動記事収集
+- Zennから最新の技術記事を定期的に自動取得
+- 設定したキーワードに基づく高精度なフィルタリング
+
+### 🤖 AI要約生成
+- 各記事の内容をAIが自動要約
+- 短時間で記事の概要を把握可能
+
+### 📅 日付別表示
+- 記事を日付別に整理して表示
+- カレンダー機能による直感的な日付選択
+
+### 🎯 パーソナライズ
+- 個人の興味に合わせたキーワード設定
+- 関連性の高い記事のみを効率的に表示
+
+## アーキテクチャ
+
+```
+Zenn RSS → AIエージェント → PostgreSQL(Neon) →  React UI
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **記事取得**: n8nがZenn RSSから記事を自動取得
+2. **フィルタリング**: AIエージェントがキーワードベースで記事を選別
+3. **要約生成**: 選別された記事をAIが要約
+4. **データ保存**: PostgreSQLに処理済み記事を保存
+5. **UI表示**:ユーザーフレンドリーに表示
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 今後の展望
+- **ユーザ登録機能** - 個人用途から拡張する
+- **UIでのキーワード設定機能** - Webインターフェースからの直接設定
+- **検索機能** - 保存された記事内の全文検索
+- **課金要素の導入** - 課金システムの導入によるサービス提供
+- **多様なソース対応** - Qiita、note等の他プラットフォーム連携
+- **高度なレコメンデーション** - 機械学習による記事推薦機能
+- **チーム機能** - 複数ユーザーでの記事共有・コメント機能
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# News-Picker
