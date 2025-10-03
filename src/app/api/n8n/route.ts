@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const user_clerk_id = "testuser";
+    const user_clerk_id = "user_33XmzUBKDjtz9qAeSwM8WjvsIUp";
     const { text, title, url, publishedAt } = body as {
       text: string;
       title: string;
