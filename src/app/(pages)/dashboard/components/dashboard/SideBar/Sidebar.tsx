@@ -5,7 +5,7 @@ import {
   SidebarHeader,
   SidebarRail,
   SidebarSeparator,
-} from "@/app/(pages)/dashboard/components/ui/sidebar";
+} from "@/app/components/ui/sidebar";
 import { CalendarPicker } from "./CalendarPicker";
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (

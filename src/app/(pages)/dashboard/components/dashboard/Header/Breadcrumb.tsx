@@ -1,9 +1,10 @@
+"use client";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-} from "@/app/(pages)/dashboard/components/ui/breadcrumb";
+} from "@/app/components/ui/breadcrumb";
 import { selectedDateAtom } from "@/app/store";
 import { useAtomValue } from "jotai";
 const BreadcrumbComponents = () => {
