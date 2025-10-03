@@ -1,5 +1,5 @@
 import NewsContents from "../NewsContents/NewsContents";
-import { getNews } from "@/lib/actions/news";
+import { getNews } from "@/lib/action/news";
 import { NewsItem } from "@/types/News.type";
 
 const News = async () => {
