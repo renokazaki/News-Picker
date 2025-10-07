@@ -2,6 +2,8 @@ import BreadcrumbComponents from "./Breadcrumb";
 import { Separator } from "../../../../../components/ui/separator";
 import { SidebarTrigger } from "../../../../../components/ui/sidebar";
 
+import AuthHeader from "./AuthHeader";
+
 function Header() {
   return (
     <>
@@ -12,6 +14,9 @@ function Header() {
           className="mr-2 data-[orientation=vertical]:h-5 bg-slate-300/50 dark:bg-slate-700/50"
         />
         <BreadcrumbComponents />
+        <div className="flex-1 flex justify-end">
+          <AuthHeader />
+        </div>
       </header>
     </>
   );
