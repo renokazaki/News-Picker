@@ -5,14 +5,20 @@ import {
 import { AppSidebar } from "../../SideBar/Sidebar";
 import Header from "../../Header/Header";
 import News from "../NewsContents/News";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const user_clerk_id = (await auth()).userId;
+  if (!user_clerk_id) {
+    redirect("/sign-in");
+  }
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar user_clerk_id={user_clerk_id} />
       <SidebarInset>
         <Header />
-        <News />
+        <News user_clerk_id={user_clerk_id} />
       </SidebarInset>
     </SidebarProvider>
   );
