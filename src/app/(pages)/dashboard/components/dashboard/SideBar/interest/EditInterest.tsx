@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -15,9 +14,13 @@ import { Label } from "@/app/components/ui/label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema, FormSchemaType } from "@/lib/schema";
-import { postInterest } from "./handleInterest";
+import { updateInterest } from "./handleInterest";
 
-export function InterestModal({ user_clerk_id }: { user_clerk_id: string }) {
+interface EditInterestProps {
+  interestId: number;
+}
+
+export function EditInterest({ interestId }: EditInterestProps) {
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -26,7 +29,7 @@ export function InterestModal({ user_clerk_id }: { user_clerk_id: string }) {
   });
 
   const handleSubmit = async (data: FormSchemaType) => {
-    const result = await postInterest(data, user_clerk_id);
+    const result = await updateInterest(interestId, data);
     form.reset();
     console.log(result);
   };
@@ -35,16 +38,13 @@ export function InterestModal({ user_clerk_id }: { user_clerk_id: string }) {
     <Dialog>
       <form className="space-y-8">
         <DialogTrigger asChild>
-          <Button className="w-full bg-blue-500 text-white mx-auto">
-            キーワードを追加
+          <Button className="w-full bg-green-500 text-white mx-auto">
+            編集
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>キーワードを登録</DialogTitle>
-            <DialogDescription>
-              登録後にキーワードに基づいて記事を自動で収集します。
-            </DialogDescription>
+            <DialogTitle>キーワードを編集</DialogTitle>
           </DialogHeader>
           <div className="grid gap-4">
             <div className="grid gap-3">
@@ -73,7 +73,7 @@ export function InterestModal({ user_clerk_id }: { user_clerk_id: string }) {
               disabled={form.formState.isSubmitting}
               onClick={form.handleSubmit(handleSubmit)}
             >
-              {form.formState.isSubmitting ? "登録中..." : "登録"}
+              {form.formState.isSubmitting ? "更新中..." : "更新"}
             </Button>
           </DialogFooter>
         </DialogContent>
