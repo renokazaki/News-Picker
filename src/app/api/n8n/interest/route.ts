@@ -43,18 +43,22 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const user_clerk_id = request.nextUrl.searchParams.get("user_clerk_id");
+  if (!user_clerk_id) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   try {
-    const user = await prisma.user.findMany({
-      include: {
-        interests: true,
+    const interests = await prisma.interest.findMany({
+      where: {
+        user_clerk_id: user_clerk_id,
       },
     });
-    return NextResponse.json(user, { status: 200 });
+    return NextResponse.json(interests, { status: 200 });
   } catch (error) {
-    console.error("Error fetching user:", error);
+    console.error("Error fetching interests:", error);
     return NextResponse.json(
-      { error: "Failed to fetch user" },
+      { error: "Failed to fetch interests" },
       { status: 500 }
     );
   }
