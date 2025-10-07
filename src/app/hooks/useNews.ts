@@ -3,8 +3,9 @@ import { NewsItem } from "@/types/News.type";
 import { fetcher } from "@/lib/fetcher";
 
 export function useNews() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
-  const { data, error, isLoading, mutate } = useSWR<NewsItem[]>(
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
+  const { data, error, isLoading } = useSWR<NewsItem[]>(
     `${apiUrl}/api/n8n`,
     fetcher,
     {
@@ -23,6 +24,5 @@ export function useNews() {
     news: data,
     isLoading,
     isError: error,
-    mutate,
   };
 }
