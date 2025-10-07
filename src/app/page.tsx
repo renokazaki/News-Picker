@@ -46,7 +46,7 @@ export default async function Home() {
           <div className="flex justify-center lg:justify-end">
             <div className="rounded-xl overflow-hidden shadow-lg max-w-full">
               <Image
-                src="/NewsPicker.png"
+                src="/NewsPicker.PNG"
                 alt="NewsPicker アプリ画面"
                 width={600}
                 height={450}
