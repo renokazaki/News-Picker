@@ -24,6 +24,8 @@
 - **Tailwind CSS** - 効率的なスタイリング
 - **Jotai** - 状態管理ライブラリ
 - **SWR** - 効率的なデータ操作
+- **React Hook Form** - 使いやすいForm
+- **Zod** - Validation
 
 ### バックエンド
 - **Prisma** - 型安全なORM
