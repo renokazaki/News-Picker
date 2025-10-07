@@ -12,8 +12,18 @@ const NewsFotter = ({ news }: NewsFotterProps) => {
     <CardFooter className="pt-0 flex items-center justify-between">
       <div className="flex items-center gap-1 text-xs text-muted-foreground">
         <Clock className="h-3 w-3" />
-        <time dateTime={news.publishedAt.toISOString()}>
-          {formatDate(news.publishedAt.toISOString())}
+        <time
+          dateTime={
+            typeof news.publishedAt === "string"
+              ? news.publishedAt
+              : news.publishedAt.toISOString()
+          }
+        >
+          {formatDate(
+            typeof news.publishedAt === "string"
+              ? news.publishedAt
+              : news.publishedAt.toISOString()
+          )}
         </time>
       </div>
       <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-primary transition-colors" />

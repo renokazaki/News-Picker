@@ -4,19 +4,20 @@ import { selectedDateAtom } from "@/app/store";
 import NewsCard from "./NewsCard/NewsCard";
 import { NewsItem } from "@/types/News.type";
 import { useAtomValue } from "jotai";
+import { useNews } from "@/app/hooks/useNews";
+import { filteringNews } from "./filteringNews";
 
-const NewsContents = ({ news }: { news: NewsItem[] }) => {
+type NewsContentsProps = {
+  initialNews: NewsItem[];
+};
+
+const NewsContents = ({ initialNews }: NewsContentsProps) => {
+  // ✅ SWRで最新データを取得
+  const { news, isLoading, isError } = useNews();
+  // ✅ 新しいデータがあれば使用、なければ初期データ
+  const displayNews = news ?? initialNews;
   const selectedDate = useAtomValue(selectedDateAtom);
-
-  const filteredNews = selectedDate
-    ? news.filter((item) => {
-        const newsDateStr = item.publishedAt.toISOString().split("T")[0];
-        const selectedDateStr = `${selectedDate.getFullYear()}-${String(
-          selectedDate.getMonth() + 1
-        ).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}`;
-        return newsDateStr === selectedDateStr;
-      })
-    : news;
+  const filteredNews = filteringNews(selectedDate, displayNews);
 
   if (filteredNews.length === 0 && selectedDate) {
     return (

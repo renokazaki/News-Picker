@@ -46,3 +46,20 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+export async function GET() {
+  try {
+    const news = await prisma.news.findMany({
+      orderBy: {
+        publishedAt: "desc",
+      },
+    });
+    return NextResponse.json(news, { status: 200 });
+  } catch (error) {
+    console.error("Error fetching news:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch news" },
+      { status: 500 }
+    );
+  }
+}
