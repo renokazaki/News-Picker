@@ -18,9 +18,10 @@ import { updateInterest } from "./handleInterest";
 
 interface EditInterestProps {
   interestId: number;
+  interest: string;
 }
 
-export function EditInterest({ interestId }: EditInterestProps) {
+export function EditInterest({ interestId, interest }: EditInterestProps) {
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,7 +45,7 @@ export function EditInterest({ interestId }: EditInterestProps) {
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>キーワードを編集</DialogTitle>
+            <DialogTitle>{interest}</DialogTitle>
           </DialogHeader>
           <div className="grid gap-4">
             <div className="grid gap-3">
@@ -52,7 +53,7 @@ export function EditInterest({ interestId }: EditInterestProps) {
               <Input
                 id="interest"
                 {...form.register("interest")}
-                placeholder="キーワードを入力してください"
+                placeholder="更新したいキーワードを入力してください"
                 disabled={form.formState.isSubmitting}
               />
               {form.formState.errors.interest && (

@@ -40,5 +40,6 @@ model News {
   text          String
   title         String
   url           String
+  tag           String
   publishedAt   DateTime
 }
