@@ -35,7 +35,7 @@ export function InterestModal({ user_clerk_id }: { user_clerk_id: string }) {
     <Dialog>
       <form className="space-y-8">
         <DialogTrigger asChild>
-          <Button className="w-full bg-blue-500 text-white mx-auto">
+          <Button className="w-full bg-blue-500 text-white hover:bg-blue-600">
             キーワードを追加
           </Button>
         </DialogTrigger>

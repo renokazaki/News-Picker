@@ -30,16 +30,15 @@ export function EditInterest({ interestId, interest }: EditInterestProps) {
   });
 
   const handleSubmit = async (data: FormSchemaType) => {
-    const result = await updateInterest(interestId, data);
+    await updateInterest(interestId, data);
     form.reset();
-    console.log(result);
   };
 
   return (
     <Dialog>
       <form className="space-y-8">
         <DialogTrigger asChild>
-          <Button className="w-full bg-green-500 text-white mx-auto">
+          <Button className="w-full bg-green-400 text-white mx-auto hover:bg-green-600  ">
             編集
           </Button>
         </DialogTrigger>
