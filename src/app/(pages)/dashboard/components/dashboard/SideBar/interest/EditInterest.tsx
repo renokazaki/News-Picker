@@ -30,9 +30,8 @@ export function EditInterest({ interestId, interest }: EditInterestProps) {
   });
 
   const handleSubmit = async (data: FormSchemaType) => {
-    const result = await updateInterest(interestId, data);
+    await updateInterest(interestId, data);
     form.reset();
-    console.log(result);
   };
 
   return (

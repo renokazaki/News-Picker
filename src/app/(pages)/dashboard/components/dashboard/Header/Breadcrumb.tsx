@@ -46,7 +46,7 @@ const BreadcrumbComponents = () => {
                 variant="outline"
                 size="sm"
                 onClick={handleClearFilters}
-                className="h-6 w-6 p-0"
+                className="h-6 w-6 p-0 hover:bg-gray-100"
               >
                 <X className="h-3 w-3" />
               </Button>
