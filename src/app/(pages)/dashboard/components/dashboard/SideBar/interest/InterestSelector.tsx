@@ -45,7 +45,10 @@ const InterestSelector = ({ interests }: InterestSelectorProps) => {
           </span>
           <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
             <DeleteInterest interestId={interest.id} />
-            <EditInterest interestId={interest.id} />
+            <EditInterest
+              interestId={interest.id}
+              interest={interest.interest}
+            />
           </div>
         </div>
       ))}
