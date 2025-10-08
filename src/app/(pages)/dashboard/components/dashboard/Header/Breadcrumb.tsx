@@ -6,11 +6,15 @@ import {
   BreadcrumbPage,
 } from "@/app/components/ui/breadcrumb";
 import { selectedDateAtom, selectedInterestAtom } from "@/app/store";
-import { useAtomValue } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
+import { Button } from "@/app/components/ui/button";
+import { X } from "lucide-react";
 
 const BreadcrumbComponents = () => {
   const date = useAtomValue(selectedDateAtom);
   const selectedInterest = useAtomValue(selectedInterestAtom);
+  const [, setDate] = useAtom(selectedDateAtom);
+  const [, setSelectedInterest] = useAtom(selectedInterestAtom);
 
   const getBreadcrumbText = () => {
     if (date && selectedInterest) {
@@ -24,13 +28,30 @@ const BreadcrumbComponents = () => {
     }
   };
 
+  const handleClearFilters = () => {
+    setDate(undefined);
+    setSelectedInterest(undefined);
+  };
+
   return (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbPage className="text-sm font-medium">
-            {getBreadcrumbText()}
-          </BreadcrumbPage>
+          <div className="flex items-center gap-2">
+            <BreadcrumbPage className="text-sm font-medium">
+              {getBreadcrumbText()}
+            </BreadcrumbPage>
+            {(date || selectedInterest) && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleClearFilters}
+                className="h-6 w-6 p-0"
+              >
+                <X className="h-3 w-3" />
+              </Button>
+            )}
+          </div>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

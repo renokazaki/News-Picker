@@ -23,35 +23,37 @@ const InterestSelector = ({ interests }: InterestSelectorProps) => {
   };
 
   return (
-    <div className="w-full flex flex-col mt-4 space-y-2">
-      {interests?.map((interest) => (
-        <div
-          key={interest.id}
-          className={cn(
-            "w-full border flex justify-between items-center border-gray-300 p-2 cursor-pointer transition-colors hover:bg-gray-50",
-            selectedInterest === interest.interest &&
-              "bg-blue-100 border-blue-500"
-          )}
-          onClick={() => handleInterestClick(interest.interest)}
-        >
-          <span
+    <div className="w-full flex flex-col h-full">
+      <div className="overflow-y-auto flex-1 space-y-2 p-4">
+        {interests?.map((interest) => (
+          <div
+            key={interest.id}
             className={cn(
-              "flex-1",
+              "w-full border flex justify-between items-center border-gray-300 p-2 cursor-pointer transition-colors hover:bg-gray-50",
               selectedInterest === interest.interest &&
-                "text-blue-700 font-medium"
+                "bg-blue-100 border-blue-500"
             )}
+            onClick={() => handleInterestClick(interest.interest)}
           >
-            {interest.interest}
-          </span>
-          <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
-            <DeleteInterest interestId={interest.id} />
-            <EditInterest
-              interestId={interest.id}
-              interest={interest.interest}
-            />
+            <span
+              className={cn(
+                "flex-1",
+                selectedInterest === interest.interest &&
+                  "text-blue-700 font-medium"
+              )}
+            >
+              {interest.interest}
+            </span>
+            <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
+              <DeleteInterest interestId={interest.id} />
+              <EditInterest
+                interestId={interest.id}
+                interest={interest.interest}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

@@ -25,7 +25,9 @@ const DeleteInterest = ({ interestId }: { interestId: number }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className=" bg-red-500 text-white">削除</Button>
+        <Button className=" bg-red-400 text-white hover:bg-red-500">
+          削除
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
