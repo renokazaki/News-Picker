@@ -1,4 +1,4 @@
-import AuthAvatar from '@/app/(privtate)/dashboard/top/components/header/AuthAvatar';
+import AuthAvatar from '../(auth)/AuthAvatar';
 import AuthRedirect from './components/AuthRedirect';
 import LandingPageContent from './components/LandingPageContent';
 
