@@ -11,15 +11,20 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import React, { useTransition } from 'react';
-import { deleteInterest } from './handleInterest';
+import { toast } from 'sonner';
+import { deleteInterest } from '../../../../../actions/handleInterest';
 
-const DeleteInterest = ({ interestId }: { interestId: number }) => {
+export default function DeleteInterest({ interestId }: { interestId: number }) {
   const [isPending, startTransition] = useTransition();
 
   const handleDelete = async (interestId: number) => {
     startTransition(async () => {
-      const response = await deleteInterest(interestId);
-      console.log(response);
+      const res = await deleteInterest(interestId);
+      if (!res.success) {
+        toast.error(res.errorMessage);
+        return;
+      }
+      toast.success('キーワードを削除しました');
     });
   };
   return (
@@ -44,6 +49,4 @@ const DeleteInterest = ({ interestId }: { interestId: number }) => {
       </DialogContent>
     </Dialog>
   );
-};
-
-export default DeleteInterest;
+}

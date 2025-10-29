@@ -6,8 +6,10 @@ import {
   SidebarSeparator,
 } from '@/components/ui/sidebar';
 import * as React from 'react';
+import { Suspense } from 'react';
 import { CalendarComponent } from './CalendarComponent';
-import Interest from './interest/Interest';
+import InterestLoading from './interest/InterestLoading';
+import InterestPane from './interest/InterestPane';
 
 export default function SidebarPane({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -22,7 +24,9 @@ export default function SidebarPane({ ...props }: React.ComponentProps<typeof Si
           </div>
           <SidebarSeparator className="mx-0" />
           <div className="flex-1 overflow-hidden">
-            <Interest />
+            <Suspense fallback={<InterestLoading />}>
+              <InterestPane />
+            </Suspense>
           </div>
         </div>
       </SidebarContent>

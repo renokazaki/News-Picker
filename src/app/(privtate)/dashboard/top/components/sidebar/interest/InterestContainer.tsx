@@ -1,28 +1,14 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { selectedInterestAtom } from '@/store';
-import { useAtom } from 'jotai';
+import { Interest } from '@/types/Interest.type';
 import React from 'react';
-import DeleteInterest from './DeleteInterest';
-import { EditInterest } from './EditInterest';
+import { useSelectInterest } from '../../../hooks/useSelectInterest';
+import DeleteInterest from './feature/delete/DeleteInterest';
+import EditInterest from './feature/update/EditInterest';
 
-interface Interest {
-  id: number;
-  interest: string;
-}
-
-interface InterestSelectorProps {
-  interests: Interest[];
-}
-
-const InterestSelector = ({ interests }: InterestSelectorProps) => {
-  const [selectedInterest, setSelectedInterest] = useAtom(selectedInterestAtom);
-
-  const handleInterestClick = (interest: string) => {
-    setSelectedInterest(selectedInterest === interest ? undefined : interest);
-  };
-
+export default function InterestContainer({ interests }: { interests: Interest[] }) {
+  const { selectedInterest, handleInterestClick } = useSelectInterest();
   return (
     <div className="flex h-full w-full flex-col">
       <div className="flex-1 space-y-2 overflow-y-auto p-4">
@@ -52,6 +38,4 @@ const InterestSelector = ({ interests }: InterestSelectorProps) => {
       </div>
     </div>
   );
-};
-
-export default InterestSelector;
+}

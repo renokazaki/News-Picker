@@ -1,11 +1,22 @@
 import React from 'react';
-import { getInterest } from './handleInterest';
-import InterestSelector from './InterestSelector';
+import { getInterest } from '../../../actions/handleInterest';
+import InterestContainer from './InterestContainer';
 
-const InterestList = async ({ user_clerk_id }: { user_clerk_id: string }) => {
-  const interests = await getInterest(user_clerk_id);
+export default async function InterestList({ user_clerk_id }: { user_clerk_id: string }) {
+  const res = await getInterest(user_clerk_id);
 
-  return <InterestSelector interests={interests || []} />;
-};
+  if (!res.success) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <h1 className="text-xl font-bold">
+          興味のあるキーワードの取得に失敗しました。再読み込みを行ってください。
+        </h1>
+        <p className="text-sm text-red-500">{res.errorMessage}</p>
+      </div>
+    );
+  }
 
-export default InterestList;
+  const interests = res.data;
+
+  return <InterestContainer interests={interests} />;
+}
