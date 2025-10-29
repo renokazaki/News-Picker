@@ -1,8 +1,10 @@
-"use client";
-import { Calendar } from "@/app/components/ui/calendar";
-import { SidebarGroup, SidebarGroupContent } from "@/app/components/ui/sidebar";
-import { selectedDateAtom } from "@/app/store";
-import { useAtom } from "jotai";
+'use client';
+
+import { Calendar } from '@/app/components/ui/calendar';
+import { SidebarGroup, SidebarGroupContent } from '@/app/components/ui/sidebar';
+import { selectedDateAtom } from '@/app/store';
+import { useAtom } from 'jotai';
+
 export function CalendarPicker() {
   const [date, setDate] = useAtom(selectedDateAtom);
   return (

@@ -1,7 +1,6 @@
-import { NewsItem } from "@/types/News.type";
-import { fetcher } from "@/lib/fetcher";
-import { Interest } from "@prisma/client";
-import useSWR from "swr";
+import { fetcher } from '@/lib/fetcher';
+import { Interest } from '@prisma/client';
+import useSWR from 'swr';
 
 // export function useNews() {
 //   const apiUrl =
@@ -29,8 +28,7 @@ import useSWR from "swr";
 // }
 
 export function useInterests(user_clerk_id: string) {
-  const apiUrl =
-    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
+  const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
   const { data, error, isLoading } = useSWR<Interest[]>(
     `${apiUrl}/api/n8n/interests?user_clerk_id=${user_clerk_id}`,
     fetcher

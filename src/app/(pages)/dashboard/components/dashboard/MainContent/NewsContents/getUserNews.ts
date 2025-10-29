@@ -1,6 +1,6 @@
-"use server";
+'use server';
 
-import prisma from "@/lib/prisma";
+import prisma from '@/lib/prisma';
 
 export async function getUserNews(user_clerk_id: string) {
   if (!user_clerk_id) {
@@ -10,7 +10,7 @@ export async function getUserNews(user_clerk_id: string) {
   try {
     const news = await prisma.news.findMany({
       orderBy: {
-        publishedAt: "desc",
+        publishedAt: 'desc',
       },
       where: {
         user_clerk_id,
@@ -19,7 +19,7 @@ export async function getUserNews(user_clerk_id: string) {
 
     return news;
   } catch (error) {
-    console.error("Error fetching user news:", error);
+    console.error('Error fetching user news:', error);
     return [];
   }
 }

@@ -1,5 +1,5 @@
-import { CardContent } from "@/app/components/ui/card";
-import { NewsItem } from "@/types/News.type";
+import { CardContent } from '@/app/components/ui/card';
+import { NewsItem } from '@/types/News.type';
 
 interface NewsContentProps {
   news: NewsItem;
@@ -8,7 +8,7 @@ interface NewsContentProps {
 const NewsContent = ({ news }: NewsContentProps) => {
   return (
     <CardContent className="pt-0 pb-4">
-      <p className="text-sm text-muted-foreground line-clamp-10">{news.text}</p>
+      <p className="text-muted-foreground line-clamp-10 text-sm">{news.text}</p>
     </CardContent>
   );
 };

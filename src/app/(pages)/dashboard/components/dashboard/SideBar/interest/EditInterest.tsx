@@ -1,5 +1,6 @@
-"use client";
-import { Button } from "@/app/components/ui/button";
+'use client';
+
+import { Button } from '@/app/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -8,13 +9,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/app/components/ui/dialog";
-import { Input } from "@/app/components/ui/input";
-import { Label } from "@/app/components/ui/label";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { formSchema, FormSchemaType } from "@/lib/schema";
-import { updateInterest } from "./handleInterest";
+} from '@/app/components/ui/dialog';
+import { Input } from '@/app/components/ui/input';
+import { Label } from '@/app/components/ui/label';
+import { formSchema, FormSchemaType } from '@/lib/schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { updateInterest } from './handleInterest';
 
 interface EditInterestProps {
   interestId: number;
@@ -25,7 +26,7 @@ export function EditInterest({ interestId, interest }: EditInterestProps) {
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      interest: "",
+      interest: '',
     },
   });
 
@@ -38,7 +39,7 @@ export function EditInterest({ interestId, interest }: EditInterestProps) {
     <Dialog>
       <form className="space-y-8">
         <DialogTrigger asChild>
-          <Button className="w-full bg-green-400 text-white mx-auto hover:bg-green-600  ">
+          <Button className="mx-auto w-full bg-green-400 text-white hover:bg-green-600">
             編集
           </Button>
         </DialogTrigger>
@@ -51,14 +52,12 @@ export function EditInterest({ interestId, interest }: EditInterestProps) {
               <Label htmlFor="interest">キーワード</Label>
               <Input
                 id="interest"
-                {...form.register("interest")}
+                {...form.register('interest')}
                 placeholder="更新したいキーワードを入力してください"
                 disabled={form.formState.isSubmitting}
               />
               {form.formState.errors.interest && (
-                <p className="text-red-500">
-                  {form.formState.errors.interest.message}
-                </p>
+                <p className="text-red-500">{form.formState.errors.interest.message}</p>
               )}
             </div>
           </div>
@@ -73,7 +72,7 @@ export function EditInterest({ interestId, interest }: EditInterestProps) {
               disabled={form.formState.isSubmitting}
               onClick={form.handleSubmit(handleSubmit)}
             >
-              {form.formState.isSubmitting ? "更新中..." : "更新"}
+              {form.formState.isSubmitting ? '更新中...' : '更新'}
             </Button>
           </DialogFooter>
         </DialogContent>
