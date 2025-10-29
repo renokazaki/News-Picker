@@ -1,8 +1,10 @@
+'use client';
+
 import GuestLogin from '@/app/(auth)/GuestLogin';
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import React from 'react';
 
-const AuthHeader = () => {
+export default function AuthAvatar() {
   return (
     <div className="flex h-12 items-center justify-between">
       <div className="flex">
@@ -23,6 +25,4 @@ const AuthHeader = () => {
       </div>
     </div>
   );
-};
-
-export default AuthHeader;
+}

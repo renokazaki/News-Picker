@@ -6,13 +6,10 @@ import {
   SidebarSeparator,
 } from '@/components/ui/sidebar';
 import * as React from 'react';
-import { CalendarPicker } from './CalendarPicker';
+import { CalendarComponent } from './CalendarComponent';
 import Interest from './interest/Interest';
 
-export function AppSidebar({
-  user_clerk_id,
-  ...props
-}: React.ComponentProps<typeof Sidebar> & { user_clerk_id: string }) {
+export default function SidebarPane({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
       <SidebarHeader className="border-sidebar-border flex h-16 items-center justify-center border-b">
@@ -21,11 +18,11 @@ export function AppSidebar({
       <SidebarContent className="overflow-hidden">
         <div className="flex h-full flex-col">
           <div className="flex-shrink-0">
-            <CalendarPicker />
+            <CalendarComponent />
           </div>
           <SidebarSeparator className="mx-0" />
           <div className="flex-1 overflow-hidden">
-            <Interest user_clerk_id={user_clerk_id} />
+            <Interest />
           </div>
         </div>
       </SidebarContent>

@@ -1,8 +1,8 @@
 'use server';
 
 import prisma from '@/lib/prisma';
-import { FormSchemaType } from '@/lib/schema';
 import { revalidatePath } from 'next/cache';
+import { FormSchemaType } from '../../../schemas/schema';
 
 export async function getInterest(user_clerk_id: string) {
   if (!user_clerk_id) {
@@ -27,7 +27,7 @@ export async function deleteInterest(interestId: number) {
     const interest = await prisma.interest.delete({
       where: { id: interestId },
     });
-    revalidatePath('/dashboard');
+    revalidatePath('/dashboard/top');
     return interest;
   } catch (error) {
     console.error('Error deleting interest:', error);
@@ -41,7 +41,7 @@ export async function updateInterest(interestId: number, data: FormSchemaType) {
       where: { id: interestId },
       data: { interest: data.interest },
     });
-    revalidatePath('/dashboard');
+    revalidatePath('/dashboard/top');
     return interest;
   } catch (error) {
     console.error('Error updating interest:', error);
@@ -57,7 +57,7 @@ export async function postInterest(data: FormSchemaType, user_clerk_id: string) 
         user_clerk_id,
       },
     });
-    revalidatePath('/dashboard');
+    revalidatePath('/dashboard/top');
     return interest;
   } catch (error) {
     console.error('Error submitting form:', error);

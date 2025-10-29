@@ -21,7 +21,7 @@ export default function GuestLogin() {
         });
         if (result.status === 'complete') {
           await setActive({ session: result.createdSessionId });
-          router.push('/dashboard');
+          router.push('/dashboard/top');
         }
       } catch (error) {
         console.error('Guest login failed:', error);

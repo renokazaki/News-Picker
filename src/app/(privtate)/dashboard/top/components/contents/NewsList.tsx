@@ -3,10 +3,10 @@
 import { selectedDateAtom, selectedInterestAtom } from '@/store';
 import { NewsItem } from '@/types/News.type';
 import { useAtomValue } from 'jotai';
-import { filteringNews } from './filteringNews';
-import NewsCard from './NewsCard/NewsCard';
+import { filteringNews } from '../../utils/filteringNews';
+import NewsCard from './NewsCard';
 
-export default function NewsContents({ news }: { news: NewsItem[] }) {
+export default function NewsList({ news }: { news: NewsItem[] }) {
   const selectedDate = useAtomValue(selectedDateAtom);
   const selectedInterest = useAtomValue(selectedInterestAtom);
   const filteredNews = filteringNews(selectedDate, selectedInterest, news);

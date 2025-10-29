@@ -1,9 +1,9 @@
-import { Separator } from '../../../../../../components/ui/separator';
-import { SidebarTrigger } from '../../../../../../components/ui/sidebar';
-import AuthHeader from './AuthHeader';
+import { Separator } from '@/components/ui/separator';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import AuthAvatar from './AuthAvatar';
 import BreadcrumbComponents from './Breadcrumb';
 
-function Header() {
+export default function Header() {
   return (
     <>
       <header className="bg-background/80 supports-[backdrop-filter]:bg-background/50 sticky top-0 z-50 flex h-16 shrink-0 items-center gap-3 border-b border-b-slate-200/30 px-4 shadow-sm backdrop-blur-md dark:border-b-slate-700/30">
@@ -14,11 +14,9 @@ function Header() {
         />
         <BreadcrumbComponents />
         <div className="flex flex-1 justify-end">
-          <AuthHeader />
+          <AuthAvatar />
         </div>
       </header>
     </>
   );
 }
-
-export default Header;

@@ -1,4 +1,4 @@
-import AuthHeader from '@/app/(privtate)/dashboard/components/dashboard/Header/AuthHeader';
+import AuthAvatar from '@/app/(privtate)/dashboard/top/components/header/AuthAvatar';
 import { Button } from '@/components/ui/button';
 import { auth } from '@clerk/nextjs/server';
 import { ArrowRight, BarChart3, TrendingUp } from 'lucide-react';
@@ -6,17 +6,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-export default async function Home() {
+export default async function LandingPage() {
   const { userId } = await auth();
 
   if (userId) {
-    return redirect('/dashboard');
+    return redirect('/dashboard/top');
   }
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <AuthHeader />
+      <AuthAvatar />
       {/* Hero Section */}
       <section className="mx-auto max-w-6xl px-4 py-16">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">

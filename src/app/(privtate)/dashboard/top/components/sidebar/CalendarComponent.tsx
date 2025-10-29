@@ -5,7 +5,7 @@ import { SidebarGroup, SidebarGroupContent } from '@/components/ui/sidebar';
 import { selectedDateAtom } from '@/store';
 import { useAtom } from 'jotai';
 
-export function CalendarPicker() {
+export function CalendarComponent() {
   const [date, setDate] = useAtom(selectedDateAtom);
   return (
     <SidebarGroup className="px-0">

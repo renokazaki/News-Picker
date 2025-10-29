@@ -3,8 +3,8 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { formatDate } from '@/lib/formatdate';
 import { currentNewsAtom } from '@/store';
+import { formatDate } from '@/utils/formatdate';
 import { useAtomValue } from 'jotai';
 import { ArrowLeft, Clock, ExternalLink, Tag } from 'lucide-react';
 import { useRouter } from 'next/navigation';

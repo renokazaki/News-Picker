@@ -5,6 +5,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -12,17 +13,12 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { formSchema, FormSchemaType } from '@/lib/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { updateInterest } from './handleInterest';
+import { formSchema, FormSchemaType } from '../../../schemas/schema';
+import { postInterest } from './handleInterest';
 
-interface EditInterestProps {
-  interestId: number;
-  interest: string;
-}
-
-export function EditInterest({ interestId, interest }: EditInterestProps) {
+export function InterestModal({ user_clerk_id }: { user_clerk_id: string }) {
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,21 +27,25 @@ export function EditInterest({ interestId, interest }: EditInterestProps) {
   });
 
   const handleSubmit = async (data: FormSchemaType) => {
-    await updateInterest(interestId, data);
+    const result = await postInterest(data, user_clerk_id);
     form.reset();
+    console.log(result);
   };
 
   return (
     <Dialog>
       <form className="space-y-8">
         <DialogTrigger asChild>
-          <Button className="mx-auto w-full bg-green-400 text-white hover:bg-green-600">
-            編集
+          <Button className="w-full bg-blue-500 text-white hover:bg-blue-600">
+            キーワードを追加
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>{interest}</DialogTitle>
+            <DialogTitle>キーワードを登録</DialogTitle>
+            <DialogDescription>
+              登録後にキーワードに基づいて記事を自動で収集します。
+            </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4">
             <div className="grid gap-3">
@@ -53,7 +53,7 @@ export function EditInterest({ interestId, interest }: EditInterestProps) {
               <Input
                 id="interest"
                 {...form.register('interest')}
-                placeholder="更新したいキーワードを入力してください"
+                placeholder="キーワードを入力してください"
                 disabled={form.formState.isSubmitting}
               />
               {form.formState.errors.interest && (
@@ -72,7 +72,7 @@ export function EditInterest({ interestId, interest }: EditInterestProps) {
               disabled={form.formState.isSubmitting}
               onClick={form.handleSubmit(handleSubmit)}
             >
-              {form.formState.isSubmitting ? '更新中...' : '更新'}
+              {form.formState.isSubmitting ? '登録中...' : '登録'}
             </Button>
           </DialogFooter>
         </DialogContent>

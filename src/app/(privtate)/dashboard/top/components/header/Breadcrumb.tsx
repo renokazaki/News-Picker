@@ -11,7 +11,7 @@ import { selectedDateAtom, selectedInterestAtom } from '@/store';
 import { useAtom, useAtomValue } from 'jotai';
 import { X } from 'lucide-react';
 
-const BreadcrumbComponents = () => {
+export default function BreadcrumbComponents() {
   const date = useAtomValue(selectedDateAtom);
   const selectedInterest = useAtomValue(selectedInterestAtom);
   const [, setDate] = useAtom(selectedDateAtom);
@@ -55,6 +55,4 @@ const BreadcrumbComponents = () => {
       </BreadcrumbList>
     </Breadcrumb>
   );
-};
-
-export default BreadcrumbComponents;
+}

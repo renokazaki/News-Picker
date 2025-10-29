@@ -1,8 +1,14 @@
+import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import InterestList from './InterestList';
 import { InterestModal } from './InterestModal';
 
-const Interest = ({ user_clerk_id }: { user_clerk_id: string }) => {
+export default async function Interest() {
+  const user_clerk_id = (await auth()).userId;
+  if (!user_clerk_id) {
+    redirect('/sign-in');
+  }
   return (
     <div className="flex h-full w-full flex-col">
       <div className="flex-shrink-0">
@@ -13,6 +19,4 @@ const Interest = ({ user_clerk_id }: { user_clerk_id: string }) => {
       </div>
     </div>
   );
-};
-
-export default Interest;
+}
