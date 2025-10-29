@@ -1,7 +1,9 @@
-// Date型の日付を「YYYY-MM-DD」形式に変換する関数
-export function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  const limit = new Date(date);
-  if (date > limit) return '';
-  return date.toISOString().slice(0, 10);
+// publishedAt を正規化して ISO と YYYY-MM-DD を返す
+export function getPublishedDate(publishedAt: string | Date): { iso: string; ymd: string } {
+  const date = new Date(publishedAt);
+  if (Number.isNaN(date.getTime())) {
+    return { iso: '', ymd: '' };
+  }
+  const iso = date.toISOString();
+  return { iso, ymd: iso.slice(0, 10) };
 }

@@ -3,9 +3,9 @@ import { DateType, NewsItem } from '@/types/News.type';
 export const filteringNews = (
   selectedDate: DateType,
   selectedInterest: string | undefined,
-  displayNews: NewsItem[]
+  news: NewsItem[]
 ) => {
-  let filteredNews = displayNews;
+  let filteredNews = news;
 
   // Filter by date if selected
   if (selectedDate) {

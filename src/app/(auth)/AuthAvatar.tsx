@@ -1,8 +1,8 @@
 'use client';
 
-import GuestLogin from '@/app/(auth)/GuestLogin';
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import React from 'react';
+import GuestLogin from './GuestLogin';
 
 export default function AuthAvatar() {
   return (

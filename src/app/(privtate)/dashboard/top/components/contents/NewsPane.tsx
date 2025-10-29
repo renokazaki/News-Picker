@@ -25,9 +25,15 @@ export default async function NewsPane() {
 
   return (
     <main className="flex-1 space-y-6 bg-gradient-to-br from-slate-50 to-white p-4 md:p-6 lg:p-8 dark:from-slate-900 dark:to-slate-800">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+      {news.length === 0 ? (
+        <div className="col-span-full flex items-center justify-center py-8">
+          <p className="text-muted-foreground">
+            ニュースがありません。キーワードを登録しニュースを収集しましょう。
+          </p>
+        </div>
+      ) : (
         <NewsList news={news} />
-      </div>
+      )}
     </main>
   );
 }

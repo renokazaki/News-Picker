@@ -1,6 +1,6 @@
+import AuthAvatar from '@/app/(auth)/AuthAvatar';
 import { Separator } from '@/components/ui/separator';
 import { SidebarTrigger } from '@/components/ui/sidebar';
-import AuthAvatar from './AuthAvatar';
 import BreadcrumbComponents from './Breadcrumb';
 
 export default function Header() {

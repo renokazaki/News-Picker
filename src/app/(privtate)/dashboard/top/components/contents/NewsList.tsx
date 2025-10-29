@@ -1,15 +1,11 @@
 'use client';
 
-import { selectedDateAtom, selectedInterestAtom } from '@/store';
 import { NewsItem } from '@/types/News.type';
-import { useAtomValue } from 'jotai';
-import { filteringNews } from '../../utils/filteringNews';
+import { useFilter } from '../../hooks/useFilter';
 import NewsCard from './NewsCard';
 
 export default function NewsList({ news }: { news: NewsItem[] }) {
-  const selectedDate = useAtomValue(selectedDateAtom);
-  const selectedInterest = useAtomValue(selectedInterestAtom);
-  const filteredNews = filteringNews(selectedDate, selectedInterest, news);
+  const { selectedDate, selectedInterest, filteredNews } = useFilter(news);
 
   if (filteredNews.length === 0 && (selectedDate || selectedInterest)) {
     return (
@@ -27,19 +23,13 @@ export default function NewsList({ news }: { news: NewsItem[] }) {
     );
   }
 
-  if (news.length === 0) {
-    return (
-      <div className="col-span-full flex items-center justify-center py-8">
-        <p className="text-muted-foreground">ニュースはありません</p>
-      </div>
-    );
-  }
-
   return (
     <>
-      {filteredNews.map((news, id) => (
-        <NewsCard key={id} news={news} id={id} />
-      ))}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        {filteredNews.map((news) => (
+          <NewsCard key={news.id} news={news} />
+        ))}
+      </div>
     </>
   );
 }
