@@ -1,5 +1,5 @@
-import { NewsItem } from '@/types/News.type';
 import { fetcher } from '@/lib/fetcher';
+import { NewsItem } from '@/types/News.type';
 import { Interest } from '@prisma/client';
 import useSWR from 'swr';
 

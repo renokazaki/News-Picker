@@ -1,10 +1,10 @@
 import { auth } from '@clerk/nextjs/server';
-import { redirect } from 'next/navigation';
+import { ArrowRight, BarChart3, TrendingUp } from 'lucide-react';
 import Image from 'next/image';
-import { TrendingUp, BarChart3, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from './components/ui/button';
+import { redirect } from 'next/navigation';
 import AuthHeader from './(pages)/dashboard/components/dashboard/Header/AuthHeader';
+import { Button } from './components/ui/button';
 
 export default async function Home() {
   const { userId } = await auth();

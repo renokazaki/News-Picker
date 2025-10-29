@@ -1,10 +1,11 @@
 'use client';
-import React from 'react';
-import { useAtom } from 'jotai';
+
 import { selectedInterestAtom } from '@/app/store';
 import { cn } from '@/lib/utils';
-import { EditInterest } from './EditInterest';
+import { useAtom } from 'jotai';
+import React from 'react';
 import DeleteInterest from './DeleteInterest';
+import { EditInterest } from './EditInterest';
 
 interface Interest {
   id: number;

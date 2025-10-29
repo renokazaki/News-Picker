@@ -1,4 +1,5 @@
 'use client';
+
 import { Button } from '@/app/components/ui/button';
 import {
   Dialog,
@@ -12,9 +13,9 @@ import {
 } from '@/app/components/ui/dialog';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema, FormSchemaType } from '@/lib/schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { postInterest } from './handleInterest';
 
 export function InterestModal({ user_clerk_id }: { user_clerk_id: string }) {

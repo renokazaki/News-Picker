@@ -1,4 +1,5 @@
 'use client';
+
 import { Button } from '@/app/components/ui/button';
 import {
   Dialog,
@@ -9,7 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/app/components/ui/dialog';
-
 import React, { useTransition } from 'react';
 import { deleteInterest } from './handleInterest';
 

@@ -1,14 +1,14 @@
 'use client';
 
-import { useAtomValue } from 'jotai';
-import React from 'react';
-import { currentNewsAtom } from '@/app/store';
-import { Card, CardContent, CardHeader } from '@/app/components/ui/card';
-import { Button } from '@/app/components/ui/button';
 import { Badge } from '@/app/components/ui/badge';
-import { ArrowLeft, ExternalLink, Clock, Tag } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { Button } from '@/app/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/app/components/ui/card';
+import { currentNewsAtom } from '@/app/store';
 import { formatDate } from '@/lib/formatdate';
+import { useAtomValue } from 'jotai';
+import { ArrowLeft, Clock, ExternalLink, Tag } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 
 export default function DetailPage() {
   const currentNews = useAtomValue(currentNewsAtom);

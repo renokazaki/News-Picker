@@ -1,8 +1,7 @@
-import BreadcrumbComponents from './Breadcrumb';
 import { Separator } from '../../../../../components/ui/separator';
 import { SidebarTrigger } from '../../../../../components/ui/sidebar';
-
 import AuthHeader from './AuthHeader';
+import BreadcrumbComponents from './Breadcrumb';
 
 function Header() {
   return (

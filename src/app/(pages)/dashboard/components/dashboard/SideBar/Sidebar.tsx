@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   Sidebar,
   SidebarContent,
@@ -6,6 +5,7 @@ import {
   SidebarRail,
   SidebarSeparator,
 } from '@/app/components/ui/sidebar';
+import * as React from 'react';
 import { CalendarPicker } from './CalendarPicker';
 import Interest from './interest/Interest';
 

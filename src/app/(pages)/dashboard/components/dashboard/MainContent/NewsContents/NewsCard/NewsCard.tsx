@@ -1,12 +1,13 @@
 'use client';
+
 import { Card } from '@/app/components/ui/card';
-import NewsFotter from './NewsFotter';
-import NewsContent from './NewsContent';
-import NewsTitle from './NewsTitle';
-import { NewsItem } from '@/types/News.type';
-import Link from 'next/link';
-import { useSetAtom } from 'jotai';
 import { currentNewsAtom } from '@/app/store';
+import { NewsItem } from '@/types/News.type';
+import { useSetAtom } from 'jotai';
+import Link from 'next/link';
+import NewsContent from './NewsContent';
+import NewsFotter from './NewsFotter';
+import NewsTitle from './NewsTitle';
 
 const NewsCard = ({ news, id }: { news: NewsItem; id: number }) => {
   const setCurrentNews = useSetAtom(currentNewsAtom);

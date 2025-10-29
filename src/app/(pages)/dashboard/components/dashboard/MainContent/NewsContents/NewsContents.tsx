@@ -1,10 +1,10 @@
 'use client';
+
 import { selectedDateAtom, selectedInterestAtom } from '@/app/store';
-import NewsCard from './NewsCard/NewsCard';
+import { NewsItem } from '@/types/News.type';
 import { useAtomValue } from 'jotai';
 import { filteringNews } from './filteringNews';
-
-import { NewsItem } from '@/types/News.type';
+import NewsCard from './NewsCard/NewsCard';
 
 export default function NewsContents({ news }: { news: NewsItem[] }) {
   const selectedDate = useAtomValue(selectedDateAtom);

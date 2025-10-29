@@ -1,8 +1,8 @@
-import { CardFooter } from '@/app/components/ui/card';
-import { Clock, ExternalLink } from 'lucide-react';
-import { NewsItem } from '@/types/News.type';
-import { formatDate } from '@/lib/formatdate';
 import { Badge } from '@/app/components/ui/badge';
+import { CardFooter } from '@/app/components/ui/card';
+import { formatDate } from '@/lib/formatdate';
+import { NewsItem } from '@/types/News.type';
+import { Clock, ExternalLink } from 'lucide-react';
 
 interface NewsFotterProps {
   news: NewsItem;

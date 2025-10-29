@@ -1,6 +1,7 @@
-import React from 'react';
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import GuestLogin from '@/app/(pages)/(auth)/GuestLogin';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import React from 'react';
+
 const AuthHeader = () => {
   return (
     <div className="flex h-12 items-center justify-between">
