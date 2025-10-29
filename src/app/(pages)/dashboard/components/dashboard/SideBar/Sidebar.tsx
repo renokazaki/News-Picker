@@ -1,13 +1,13 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
   SidebarRail,
   SidebarSeparator,
-} from "@/app/components/ui/sidebar";
-import { CalendarPicker } from "./CalendarPicker";
-import Interest from "./interest/Interest";
+} from '@/app/components/ui/sidebar';
+import { CalendarPicker } from './CalendarPicker';
+import Interest from './interest/Interest';
 
 export function AppSidebar({
   user_clerk_id,
@@ -15,11 +15,11 @@ export function AppSidebar({
 }: React.ComponentProps<typeof Sidebar> & { user_clerk_id: string }) {
   return (
     <Sidebar {...props}>
-      <SidebarHeader className=" border-sidebar-border h-16 border-b flex justify-center items-center">
+      <SidebarHeader className="border-sidebar-border flex h-16 items-center justify-center border-b">
         News一覧📰
       </SidebarHeader>
       <SidebarContent className="overflow-hidden">
-        <div className="flex flex-col h-full">
+        <div className="flex h-full flex-col">
           <div className="flex-shrink-0">
             <CalendarPicker />
           </div>

@@ -1,9 +1,5 @@
-import React from "react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/app/components/ui/tooltip";
+import React from 'react';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/app/components/ui/tooltip';
 const ToolTip = () => {
   return (
     <Tooltip>

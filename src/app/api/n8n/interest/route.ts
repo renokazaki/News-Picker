@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
+import { NextRequest, NextResponse } from 'next/server';
+import prisma from '@/lib/prisma';
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,15 +9,12 @@ export async function POST(request: NextRequest) {
       user_clerk_id: string;
     };
     if (!user_clerk_id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Validate required fields
     if (!interest || !user_clerk_id) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     // Create news record
@@ -30,23 +27,20 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(result, { status: 201 });
   } catch (error) {
-    console.error("Error creating interest:", error);
+    console.error('Error creating interest:', error);
     // Prismaエラーの詳細をログ出力
     if (error instanceof Error) {
-      console.error("Error details:", error.message);
+      console.error('Error details:', error.message);
     }
 
-    return NextResponse.json(
-      { error: "Failed to create interest" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create interest' }, { status: 500 });
   }
 }
 
 export async function GET(request: NextRequest) {
-  const user_clerk_id = request.nextUrl.searchParams.get("user_clerk_id");
+  const user_clerk_id = request.nextUrl.searchParams.get('user_clerk_id');
   if (!user_clerk_id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   try {
     const interests = await prisma.interest.findMany({
@@ -56,10 +50,7 @@ export async function GET(request: NextRequest) {
     });
     return NextResponse.json(interests, { status: 200 });
   } catch (error) {
-    console.error("Error fetching interests:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch interests" },
-      { status: 500 }
-    );
+    console.error('Error fetching interests:', error);
+    return NextResponse.json({ error: 'Failed to fetch interests' }, { status: 500 });
   }
 }

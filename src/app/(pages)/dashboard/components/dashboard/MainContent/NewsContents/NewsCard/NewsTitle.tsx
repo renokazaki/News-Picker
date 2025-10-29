@@ -1,5 +1,5 @@
-import { CardHeader } from "@/app/components/ui/card";
-import { NewsItem } from "@/types/News.type";
+import { CardHeader } from '@/app/components/ui/card';
+import { NewsItem } from '@/types/News.type';
 
 interface NewsTitleProps {
   news: NewsItem;
@@ -8,7 +8,7 @@ interface NewsTitleProps {
 const NewsTitle = ({ news }: NewsTitleProps) => {
   return (
     <CardHeader>
-      <h3 className="font-semibold text-sm leading-tight line-clamp-3 group-hover:text-primary transition-colors">
+      <h3 className="group-hover:text-primary line-clamp-3 text-sm leading-tight font-semibold transition-colors">
         {news.title}
       </h3>
     </CardHeader>

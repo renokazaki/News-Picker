@@ -2,6 +2,6 @@
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
   const limit = new Date(date);
-  if (date > limit) return "";
+  if (date > limit) return '';
   return date.toISOString().slice(0, 10);
 }

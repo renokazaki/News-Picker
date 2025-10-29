@@ -1,8 +1,8 @@
-"use client";
-import { Button } from "@/app/components/ui/button";
-import { useSignIn } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+'use client';
+import { Button } from '@/app/components/ui/button';
+import { useSignIn } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 
 export default function GuestLogin() {
   const { signIn, setActive } = useSignIn();
@@ -15,15 +15,15 @@ export default function GuestLogin() {
     startTransition(async () => {
       try {
         const result = await signIn.create({
-          identifier: "testuser",
-          password: "TESTuser",
+          identifier: 'testuser',
+          password: 'TESTuser',
         });
-        if (result.status === "complete") {
+        if (result.status === 'complete') {
           await setActive({ session: result.createdSessionId });
-          router.push("/dashboard");
+          router.push('/dashboard');
         }
       } catch (error) {
-        console.error("Guest login failed:", error);
+        console.error('Guest login failed:', error);
       }
     });
   };
@@ -32,9 +32,9 @@ export default function GuestLogin() {
     <Button
       disabled={isPending}
       onClick={handleGuestLogin}
-      className="bg-green-500 hover:bg-green-600 cursor-pointer rounded-full text-white"
+      className="cursor-pointer rounded-full bg-green-500 text-white hover:bg-green-600"
     >
-      {isPending ? "ログイン中..." : "ゲストログイン"}
+      {isPending ? 'ログイン中...' : 'ゲストログイン'}
     </Button>
   );
 }

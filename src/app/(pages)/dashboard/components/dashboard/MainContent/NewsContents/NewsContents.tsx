@@ -1,10 +1,10 @@
-"use client";
-import { selectedDateAtom, selectedInterestAtom } from "@/app/store";
-import NewsCard from "./NewsCard/NewsCard";
-import { useAtomValue } from "jotai";
-import { filteringNews } from "./filteringNews";
+'use client';
+import { selectedDateAtom, selectedInterestAtom } from '@/app/store';
+import NewsCard from './NewsCard/NewsCard';
+import { useAtomValue } from 'jotai';
+import { filteringNews } from './filteringNews';
 
-import { NewsItem } from "@/types/News.type";
+import { NewsItem } from '@/types/News.type';
 
 export default function NewsContents({ news }: { news: NewsItem[] }) {
   const selectedDate = useAtomValue(selectedDateAtom);
@@ -13,17 +13,15 @@ export default function NewsContents({ news }: { news: NewsItem[] }) {
 
   if (filteredNews.length === 0 && (selectedDate || selectedInterest)) {
     return (
-      <div className="col-span-full flex justify-center items-center py-8">
+      <div className="col-span-full flex items-center justify-center py-8">
         <p className="text-muted-foreground">
           {selectedDate && selectedInterest
             ? `${selectedDate.toLocaleDateString(
-                "ja-JP"
+                'ja-JP'
               )}の「${selectedInterest}」に関するニュースはありません`
             : selectedDate
-            ? `${selectedDate.toLocaleDateString(
-                "ja-JP"
-              )}のニュースはありません`
-            : `「${selectedInterest}」に関するニュースはありません`}
+              ? `${selectedDate.toLocaleDateString('ja-JP')}のニュースはありません`
+              : `「${selectedInterest}」に関するニュースはありません`}
         </p>
       </div>
     );
@@ -31,7 +29,7 @@ export default function NewsContents({ news }: { news: NewsItem[] }) {
 
   if (news.length === 0) {
     return (
-      <div className="col-span-full flex justify-center items-center py-8">
+      <div className="col-span-full flex items-center justify-center py-8">
         <p className="text-muted-foreground">ニュースはありません</p>
       </div>
     );

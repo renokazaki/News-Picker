@@ -1,5 +1,5 @@
-"use client";
-import { Button } from "@/app/components/ui/button";
+'use client';
+import { Button } from '@/app/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -9,19 +9,19 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/app/components/ui/dialog";
-import { Input } from "@/app/components/ui/input";
-import { Label } from "@/app/components/ui/label";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { formSchema, FormSchemaType } from "@/lib/schema";
-import { postInterest } from "./handleInterest";
+} from '@/app/components/ui/dialog';
+import { Input } from '@/app/components/ui/input';
+import { Label } from '@/app/components/ui/label';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { formSchema, FormSchemaType } from '@/lib/schema';
+import { postInterest } from './handleInterest';
 
 export function InterestModal({ user_clerk_id }: { user_clerk_id: string }) {
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      interest: "",
+      interest: '',
     },
   });
 
@@ -51,14 +51,12 @@ export function InterestModal({ user_clerk_id }: { user_clerk_id: string }) {
               <Label htmlFor="interest">キーワード</Label>
               <Input
                 id="interest"
-                {...form.register("interest")}
+                {...form.register('interest')}
                 placeholder="キーワードを入力してください"
                 disabled={form.formState.isSubmitting}
               />
               {form.formState.errors.interest && (
-                <p className="text-red-500">
-                  {form.formState.errors.interest.message}
-                </p>
+                <p className="text-red-500">{form.formState.errors.interest.message}</p>
               )}
             </div>
           </div>
@@ -73,7 +71,7 @@ export function InterestModal({ user_clerk_id }: { user_clerk_id: string }) {
               disabled={form.formState.isSubmitting}
               onClick={form.handleSubmit(handleSubmit)}
             >
-              {form.formState.isSubmitting ? "登録中..." : "登録"}
+              {form.formState.isSubmitting ? '登録中...' : '登録'}
             </Button>
           </DialogFooter>
         </DialogContent>

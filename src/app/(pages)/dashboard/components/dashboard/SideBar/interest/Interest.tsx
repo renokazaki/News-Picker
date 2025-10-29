@@ -1,10 +1,10 @@
-import React from "react";
-import InterestList from "./InterestList";
-import { InterestModal } from "./InterestModal";
+import React from 'react';
+import InterestList from './InterestList';
+import { InterestModal } from './InterestModal';
 
 const Interest = ({ user_clerk_id }: { user_clerk_id: string }) => {
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="flex h-full w-full flex-col">
       <div className="flex-shrink-0">
         <InterestModal user_clerk_id={user_clerk_id} />
       </div>

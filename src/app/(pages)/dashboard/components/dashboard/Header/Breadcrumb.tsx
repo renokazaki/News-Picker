@@ -1,14 +1,14 @@
-"use client";
+'use client';
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-} from "@/app/components/ui/breadcrumb";
-import { selectedDateAtom, selectedInterestAtom } from "@/app/store";
-import { useAtom, useAtomValue } from "jotai";
-import { Button } from "@/app/components/ui/button";
-import { X } from "lucide-react";
+} from '@/app/components/ui/breadcrumb';
+import { selectedDateAtom, selectedInterestAtom } from '@/app/store';
+import { useAtom, useAtomValue } from 'jotai';
+import { Button } from '@/app/components/ui/button';
+import { X } from 'lucide-react';
 
 const BreadcrumbComponents = () => {
   const date = useAtomValue(selectedDateAtom);
@@ -18,13 +18,13 @@ const BreadcrumbComponents = () => {
 
   const getBreadcrumbText = () => {
     if (date && selectedInterest) {
-      return `${date.toLocaleDateString("ja-JP")} - ${selectedInterest}`;
+      return `${date.toLocaleDateString('ja-JP')} - ${selectedInterest}`;
     } else if (date) {
-      return date.toLocaleDateString("ja-JP");
+      return date.toLocaleDateString('ja-JP');
     } else if (selectedInterest) {
       return selectedInterest;
     } else {
-      return "All News";
+      return 'All News';
     }
   };
 
@@ -38,9 +38,7 @@ const BreadcrumbComponents = () => {
       <BreadcrumbList>
         <BreadcrumbItem>
           <div className="flex items-center gap-2">
-            <BreadcrumbPage className="text-sm font-medium">
-              {getBreadcrumbText()}
-            </BreadcrumbPage>
+            <BreadcrumbPage className="text-sm font-medium">{getBreadcrumbText()}</BreadcrumbPage>
             {(date || selectedInterest) && (
               <Button
                 variant="outline"
