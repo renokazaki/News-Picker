@@ -19,11 +19,11 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
       - run: npm ci
-      - name: Run typecheck
-        run: npm run type-check
       - name: Run lint
         run: npm run lint
       - name: Run prettier check
         run: npm run format:check
+      - name: Run type-check
+        run: npm run type-check
       - name: Build
         run: npm run build
