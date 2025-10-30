@@ -7,7 +7,12 @@ import { useSelectInterest } from '../../../hooks/useSelectInterest';
 import DeleteInterest from './feature/delete/DeleteInterest';
 import EditInterest from './feature/update/EditInterest';
 
-export default function InterestContainer({ interests }: { interests: Interest[] }) {
+type InterestContainerProps = {
+  user_clerk_id: string;
+  interests: Interest[];
+};
+
+export default function InterestContainer({ user_clerk_id, interests }: InterestContainerProps) {
   const { selectedInterest, handleInterestClick } = useSelectInterest();
   return (
     <div className="flex h-full w-full flex-col">
@@ -30,8 +35,12 @@ export default function InterestContainer({ interests }: { interests: Interest[]
               {interest.interest}
             </span>
             <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
-              <DeleteInterest interestId={interest.id} />
-              <EditInterest interestId={interest.id} interest={interest.interest} />
+              <DeleteInterest user_clerk_id={user_clerk_id} interestId={interest.id} />
+              <EditInterest
+                user_clerk_id={user_clerk_id}
+                interestId={interest.id}
+                interest={interest.interest}
+              />
             </div>
           </div>
         ))}

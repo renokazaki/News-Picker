@@ -18,5 +18,5 @@ export default async function InterestList({ user_clerk_id }: { user_clerk_id: s
 
   const interests = res.data;
 
-  return <InterestContainer interests={interests} />;
+  return <InterestContainer user_clerk_id={user_clerk_id} interests={interests} />;
 }

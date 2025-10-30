@@ -28,7 +28,7 @@ export default function CreateInterest({ user_clerk_id }: { user_clerk_id: strin
   });
 
   const handleSubmit = async (data: FormSchemaType) => {
-    const res = await postInterest(data, user_clerk_id);
+    const res = await postInterest(user_clerk_id, data);
     if (!res.success) {
       toast.error(res.errorMessage);
       return;
