@@ -18,10 +18,13 @@ export async function getInterest(user_clerk_id: string) {
   }
 }
 
-export async function deleteInterest(interestId: number) {
+export async function deleteInterest(user_clerk_id: string, interestId: number) {
+  if (!user_clerk_id) {
+    return { success: false, errorMessage: 'please retry login' };
+  }
   try {
     await prisma.interest.delete({
-      where: { id: interestId },
+      where: { user_clerk_id, id: interestId },
     });
     revalidatePath('/dashboard/top');
     return { success: true };
@@ -31,10 +34,17 @@ export async function deleteInterest(interestId: number) {
   }
 }
 
-export async function updateInterest(interestId: number, data: FormSchemaType) {
+export async function updateInterest(
+  user_clerk_id: string,
+  interestId: number,
+  data: FormSchemaType
+) {
+  if (!user_clerk_id) {
+    return { success: false, errorMessage: 'please retry login' };
+  }
   try {
     await prisma.interest.update({
-      where: { id: interestId },
+      where: { user_clerk_id, id: interestId },
       data: { interest: data.interest },
     });
     revalidatePath('/dashboard/top');
@@ -45,12 +55,15 @@ export async function updateInterest(interestId: number, data: FormSchemaType) {
   }
 }
 
-export async function postInterest(data: FormSchemaType, user_clerk_id: string) {
+export async function postInterest(user_clerk_id: string, data: FormSchemaType) {
+  if (!user_clerk_id) {
+    return { success: false, errorMessage: 'please retry login' };
+  }
   try {
     await prisma.interest.create({
       data: {
-        interest: data.interest,
         user_clerk_id,
+        interest: data.interest,
       },
     });
     revalidatePath('/dashboard/top');

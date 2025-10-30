@@ -19,11 +19,12 @@ import { updateInterest } from '../../../../../actions/handleInterest';
 import { formSchema, FormSchemaType } from '../../../../../schemas/schema';
 
 type EditInterestProps = {
+  user_clerk_id: string;
   interestId: number;
   interest: string;
 };
 
-export default function EditInterest({ interestId, interest }: EditInterestProps) {
+export default function EditInterest({ user_clerk_id, interestId, interest }: EditInterestProps) {
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,13 +33,12 @@ export default function EditInterest({ interestId, interest }: EditInterestProps
   });
 
   const handleSubmit = async (data: FormSchemaType) => {
-    const res = await updateInterest(interestId, data);
+    const res = await updateInterest(user_clerk_id, interestId, data);
     if (!res.success) {
       toast.error(res.errorMessage);
       return;
     }
     toast.success('キーワードを更新しました');
-    form.reset();
   };
 
   return (
