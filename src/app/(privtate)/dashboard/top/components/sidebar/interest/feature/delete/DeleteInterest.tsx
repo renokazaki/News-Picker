@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import React, { useTransition } from 'react';
 import { toast } from 'sonner';
-import { deleteInterest } from '../../../../../actions/handleInterest';
+import { deleteInterestAction } from '../../../../../actions/interests';
 
 type DeleteInterestProps = {
   user_clerk_id: string;
@@ -24,8 +24,8 @@ export default function DeleteInterest({ user_clerk_id, interestId }: DeleteInte
 
   const handleDelete = async (interestId: number) => {
     startTransition(async () => {
-      const res = await deleteInterest(user_clerk_id, interestId);
-      if (!res.success) {
+      const res = await deleteInterestAction(user_clerk_id, interestId);
+      if (!res.isSuccess) {
         toast.error(res.errorMessage);
         return;
       }

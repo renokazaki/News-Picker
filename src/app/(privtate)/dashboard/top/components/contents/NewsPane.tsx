@@ -1,4 +1,4 @@
-import { getUserNews } from '@/app/(privtate)/dashboard/top/actions/getUserNews';
+import { fetchUserNews } from '@/app/(privtate)/dashboard/top/apis/userNews.server';
 import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import NewsList from './NewsList';
@@ -8,9 +8,9 @@ export default async function NewsPane() {
   if (!user_clerk_id) {
     redirect('/sign-in');
   }
-  const res = await getUserNews(user_clerk_id);
+  const res = await fetchUserNews(user_clerk_id);
 
-  if (!res.success) {
+  if (!res.isSuccess) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
         <h1 className="text-2xl font-bold">

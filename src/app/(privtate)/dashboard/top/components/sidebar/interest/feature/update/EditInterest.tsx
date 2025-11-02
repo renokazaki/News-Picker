@@ -15,7 +15,7 @@ import { Label } from '@/components/ui/label';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { updateInterest } from '../../../../../actions/handleInterest';
+import { updateInterestAction } from '../../../../../actions/interests';
 import { formSchema, FormSchemaType } from '../../../../../schemas/schema';
 
 type EditInterestProps = {
@@ -33,8 +33,8 @@ export default function EditInterest({ user_clerk_id, interestId, interest }: Ed
   });
 
   const handleSubmit = async (data: FormSchemaType) => {
-    const res = await updateInterest(user_clerk_id, interestId, data);
-    if (!res.success) {
+    const res = await updateInterestAction(user_clerk_id, interestId, data.interest);
+    if (!res.isSuccess) {
       toast.error(res.errorMessage);
       return;
     }
