@@ -1,11 +1,11 @@
 import React from 'react';
-import { getInterest } from '../../../actions/handleInterest';
+import { fetchInterests } from '../../../apis/interest.server';
 import InterestContainer from './InterestContainer';
 
 export default async function InterestList({ user_clerk_id }: { user_clerk_id: string }) {
-  const res = await getInterest(user_clerk_id);
+  const res = await fetchInterests(user_clerk_id);
 
-  if (!res.success) {
+  if (!res.isSuccess) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
         <h1 className="text-xl font-bold">

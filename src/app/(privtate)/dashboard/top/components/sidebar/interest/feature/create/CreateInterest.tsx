@@ -16,7 +16,7 @@ import { Label } from '@/components/ui/label';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { postInterest } from '../../../../../actions/handleInterest';
+import { postInterestAction } from '../../../../../actions/interests';
 import { formSchema, FormSchemaType } from '../../../../../schemas/schema';
 
 export default function CreateInterest({ user_clerk_id }: { user_clerk_id: string }) {
@@ -28,8 +28,8 @@ export default function CreateInterest({ user_clerk_id }: { user_clerk_id: strin
   });
 
   const handleSubmit = async (data: FormSchemaType) => {
-    const res = await postInterest(user_clerk_id, data);
-    if (!res.success) {
+    const res = await postInterestAction(user_clerk_id, data.interest);
+    if (!res.isSuccess) {
       toast.error(res.errorMessage);
       return;
     }
