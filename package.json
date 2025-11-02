@@ -14,6 +14,7 @@
     "ci-check": "npm run lint && npm run format:check && npm run type-check"
   },
   "dependencies": {
+    "@ai-sdk/google": "^2.0.26",
     "@clerk/nextjs": "^6.33.1",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/client": "^6.16.3",
@@ -22,6 +23,7 @@
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.8",
+    "ai": "^5.0.86",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "jotai": "^2.15.0",
